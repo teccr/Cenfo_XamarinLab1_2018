@@ -114,6 +114,9 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\newInvoice.png" />
+  </ItemGroup>
   <Import Project="..\Cenfo_XamarinLab1_2018\Cenfo_XamarinLab1_2018.projitems" Label="Shared" Condition="Exists('..\Cenfo_XamarinLab1_2018\Cenfo_XamarinLab1_2018.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.5.0.121934\build\netstandard1.0\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.5.0.121934\build\netstandard1.0\Xamarin.Forms.targets')" />

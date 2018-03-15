@@ -5,16 +5,36 @@
         <ResourceDictionary>
             <Style x:Key="labelTitleStyle" TargetType="Label" >
                 <Setter Property="TextColor" Value = "#1B4965" />
+                <Setter Property="HorizontalTextAlignment" Value="End" />
+                <Setter Property="VerticalOptions" Value="Center" />
             </Style>
             <Style x:Key="labelInvoicesTitleStyle" TargetType="Label" >
                 <Setter Property="TextColor" Value = "#1B4965" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
             </Style>
+            <Style x:Key="entryGeneralStyle" TargetType="Entry">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            </Style>
+            <Style x:Key="labelInvoiceStyle" TargetType="Label" >
+                <Setter Property="TextColor" Value = "#5FA8D3" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="Small" />
+            </Style>
+            <Style x:Key="invoiceDataStyle" TargetType="Entry">
+                <Setter Property="FontSize" Value="Small" />
+            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
     
-    <StackLayout Padding="10,30,10,10">
-        <Frame CornerRadius="5"
+    <Grid Padding="10,30,10,10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+        
+        <Frame Grid.Row="0" CornerRadius="5"
                 Padding="5">
             <StackLayout>
                <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
@@ -22,23 +42,30 @@
                     <Label Style="{StaticResource labelTitleStyle}" Text="{Binding Id}" />
                 </StackLayout> 
                 
-                <StackLayout Padding="5,0,5,5" Orientation="Horizontal">
+                <StackLayout Padding="5,0,5,0" Orientation="Horizontal">
                     <Image Source="https://figuya.com/uploads/product/profile_picture/10980/profile_dark-souls-pvc-sd-statue-artorias-der-abgrundschreiter-20-cm20180219-16806-1nwsgxh" />
 
-                    <StackLayout Margin="5,5,5,5">
-                        <StackLayout>
-                            <Label Style="{StaticResource labelTitleStyle}" Text="Nombre" />
-                            <Label Text="Elmer food" />
-                        </StackLayout>
-                    </StackLayout>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Label Text="Name" Style="{StaticResource labelInvoicesTitleStyle}" Grid.Column="0" Grid.Row="0" />
+                        <Entry Placeholder="Client Name" Style="{StaticResource entryGeneralStyle}" Text="{Binding Name}" Grid.Row="1" />
+                        <Entry Placeholder="Last Name" Style="{StaticResource entryGeneralStyle}" Text="{Binding LastName}" Grid.Row="2" />
+                        <Entry Placeholder="Mother's Last Name" Style="{StaticResource entryGeneralStyle}" Text="{Binding MothersName}" Grid.Row="3" />
+
+                    </Grid>
                 </StackLayout>    
             </StackLayout>
-
         </Frame>
 
-        <Frame CornerRadius="5"
+        <Frame Grid.Row="1" CornerRadius="5"
                 Padding="5">
-            <Grid>
+            <Grid VerticalOptions="Center">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="3*" />
@@ -55,31 +82,50 @@
                 <DatePicker Date="{Binding BirthDate}" VerticalOptions="EndAndExpand" Grid.Column="1" Grid.Row="0" />
 
                 <Label Text="Phone:" Style="{StaticResource labelTitleStyle}" Grid.Column="0" Grid.Row="1" />
-                <Entry Text="{Binding PhoneNumber}" Grid.Column="1" Grid.Row="1" />
+                <Entry Placeholder="Phone Number" Style="{StaticResource entryGeneralStyle}" Text="{Binding PhoneNumber}" Grid.Column="1" Grid.Row="1" />
 
                 <Label Text="Address:" Style="{StaticResource labelTitleStyle}" Grid.Column="0" Grid.Row="2" />
-                <Entry Text="{Binding Address}" Grid.Column="1" Grid.Row="2" />
+                <Entry Placeholder="Customer address" Style="{StaticResource entryGeneralStyle}" Text="{Binding Address}" Grid.Column="1" Grid.Row="2" />
 
                 <Label Text="Email:" Style="{StaticResource labelTitleStyle}" Grid.Column="0" Grid.Row="3" />
-                <Entry Text="{Binding Email}" Grid.Column="1" Grid.Row="3" />
+                <Entry Placeholder="Example: user@email.com" Style="{StaticResource entryGeneralStyle}" Text="{Binding Email}" Grid.Column="1" Grid.Row="3" />
 
                 <Label Text="Credit:" Style="{StaticResource labelTitleStyle}" Grid.Column="0" Grid.Row="4" />
-                <Entry Text="{Binding CreditLimit}" Grid.Column="1" Grid.Row="4" />
+                <Entry Placeholder="Credit Limit ($)" Style="{StaticResource entryGeneralStyle}" Text="{Binding CreditLimit}" Grid.Column="1" Grid.Row="4" />
                 
             </Grid>
         </Frame>
 
-        <Frame CornerRadius="5"
+        <Frame Grid.Row="2" CornerRadius="5"
                 Padding="5">
             <StackLayout>
-                <Label Style="{StaticResource labelInvoicesTitleStyle}" Text="Purchases" />
+                <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                    <Label Style="{StaticResource labelInvoicesTitleStyle}" Text="Purchases" />
+                    <Button WidthRequest="25" HeightRequest="25" Image="newInvoice"></Button>
+                </StackLayout>
                 <ListView HasUnevenRows="true" ItemsSource="{Binding Invoices}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding Description}" />
-                                    <Label Text="{Binding Amount}" />
+                                <StackLayout>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="3*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Style="{StaticResource labelInvoiceStyle}" Grid.Column="0" Text="Description:" />
+                                        <Label Style="{StaticResource invoiceDataStyle}" Grid.Column="1" Text="{Binding Description}" />
+                                    </Grid>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="3*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Style="{StaticResource labelInvoiceStyle}" Grid.Column="0" Text="Amount($): " />
+                                        <Label Style="{StaticResource invoiceDataStyle}" Grid.Column="1" Text="{Binding Amount}" />
+                                    </Grid>
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>
@@ -87,5 +133,5 @@
                 </ListView>
             </StackLayout>
         </Frame>
-    </StackLayout>
+    </Grid>
 </ContentPage>
