@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Cenfo_XamarinLab1_2018.Views.PersonDetailView">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="labelTitleStyle" TargetType="Label" >
+                <Setter Property="TextColor" Value = "#1B4965" />
+            </Style>
+            <Style x:Key="labelInvoicesTitleStyle" TargetType="Label" >
+                <Setter Property="TextColor" Value = "#1B4965" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <StackLayout Padding="10,30,10,10">
+        <Frame CornerRadius="5"
+                Padding="5">
+            <StackLayout>
+               <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                    <Label Style="{StaticResource labelTitleStyle}" Text="ID: " />
+                    <Label Style="{StaticResource labelTitleStyle}" Text="{Binding Id}" />
+                </StackLayout> 
+                
+                <StackLayout Padding="5,0,5,5" Orientation="Horizontal">
+                    <Image Source="https://figuya.com/uploads/product/profile_picture/10980/profile_dark-souls-pvc-sd-statue-artorias-der-abgrundschreiter-20-cm20180219-16806-1nwsgxh" />
+
+                    <StackLayout Margin="5,5,5,5">
+                        <StackLayout>
+                            <Label Style="{StaticResource labelTitleStyle}" Text="Nombre" />
+                            <Label Text="Elmer food" />
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>    
+            </StackLayout>
+
+        </Frame>
+
+        <Frame CornerRadius="5"
+                Padding="5">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Label Text="Birth:" Style="{StaticResource labelTitleStyle}" Grid.Column="0" Grid.Row="0" />
+                <DatePicker Date="{Binding BirthDate}" VerticalOptions="EndAndExpand" Grid.Column="1" Grid.Row="0" />
+
+                <Label Text="Phone:" Style="{StaticResource labelTitleStyle}" Grid.Column="0" Grid.Row="1" />
+                <Entry Text="{Binding PhoneNumber}" Grid.Column="1" Grid.Row="1" />
+
+                <Label Text="Address:" Style="{StaticResource labelTitleStyle}" Grid.Column="0" Grid.Row="2" />
+                <Entry Text="{Binding Address}" Grid.Column="1" Grid.Row="2" />
+
+                <Label Text="Email:" Style="{StaticResource labelTitleStyle}" Grid.Column="0" Grid.Row="3" />
+                <Entry Text="{Binding Email}" Grid.Column="1" Grid.Row="3" />
+
+                <Label Text="Credit:" Style="{StaticResource labelTitleStyle}" Grid.Column="0" Grid.Row="4" />
+                <Entry Text="{Binding CreditLimit}" Grid.Column="1" Grid.Row="4" />
+                
+            </Grid>
+        </Frame>
+
+        <Frame CornerRadius="5"
+                Padding="5">
+            <StackLayout>
+                <Label Style="{StaticResource labelInvoicesTitleStyle}" Text="Purchases" />
+                <ListView HasUnevenRows="true" ItemsSource="{Binding Invoices}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Description}" />
+                                    <Label Text="{Binding Amount}" />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</ContentPage>
