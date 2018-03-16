@@ -24,7 +24,7 @@ namespace Cenfo_XamarinLab1_2018.Views
 
             person.Invoices = new List<Invoice>();
             person.Invoices.Add( new Invoice() { Id=10001, Amount=2000, Customer=person, Description="Screen shields", InvoceDate=DateTime.Now } );
-            person.Invoices.Add(new Invoice() { Id = 10002, Amount = 2000, Customer = person, Description = "Screen shields", InvoceDate = DateTime.Now });
+            person.Invoices.Add(new Invoice() { Id = 10002, Amount = 2000, Customer = person, Description = "Chargers", InvoceDate = DateTime.Now });
             person.Invoices.Add(new Invoice() { Id = 10003, Amount = 3000, Customer = person, Description = "Cellphone cases", InvoceDate = DateTime.Now });
             person.Invoices.Add(new Invoice() { Id = 10004, Amount = 1600, Customer = person, Description = "Tablet cases", InvoceDate = DateTime.Now });
             person.Invoices.Add(new Invoice() { Id = 10005, Amount = 5540, Customer = person, Description = "Maps", InvoceDate = DateTime.Now });

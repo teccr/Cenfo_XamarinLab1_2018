@@ -15,6 +15,7 @@
             </Style>
             <Style x:Key="entryGeneralStyle" TargetType="Entry">
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="IsEnabled" Value="false" />
             </Style>
             <Style x:Key="labelInvoiceStyle" TargetType="Label" >
                 <Setter Property="TextColor" Value = "#5FA8D3" />
@@ -61,16 +62,16 @@
                         </Grid.RowDefinitions>
 
                         <Label Text="Name" Style="{StaticResource labelInvoicesTitleStyle}" Grid.Column="0" Grid.Row="0" />
-                        <Entry Placeholder="Client Name" Style="{StaticResource entryGeneralStyle}" Text="{Binding Name}" Grid.Row="1" />
-                        <Entry Placeholder="Last Name" Style="{StaticResource entryGeneralStyle}" Text="{Binding LastName}" Grid.Row="2" />
-                        <Entry Placeholder="Mother's Last Name" Style="{StaticResource entryGeneralStyle}" Text="{Binding MothersName}" Grid.Row="3" />
+                        <Entry Placeholder="Client Name" Keyboard="Default" Style="{StaticResource entryGeneralStyle}" Text="{Binding Name}" Grid.Row="1" />
+                        <Entry Placeholder="Last Name" Keyboard="Default" Style="{StaticResource entryGeneralStyle}" Text="{Binding LastName}" Grid.Row="2" />
+                        <Entry Placeholder="Mother's Last Name" Keyboard="Default" Style="{StaticResource entryGeneralStyle}" Text="{Binding MothersName}" Grid.Row="3" />
 
                     </Grid>
                 </StackLayout>    
             </StackLayout>
         </Frame>
 
-        <Frame Grid.Row="1" Style="{StaticResource frameStyle}">
+        <Frame Grid.Row="1" Style="{StaticResource frameStyle}" Padding="5,5,10,5">
             <Grid VerticalOptions="Center">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -85,19 +86,19 @@
                 </Grid.RowDefinitions>
 
                 <Label Text="Birth:" Style="{StaticResource labelTitleStyle}" Grid.Column="0" Grid.Row="0" />
-                <DatePicker Date="{Binding BirthDate}" VerticalOptions="EndAndExpand" Grid.Column="1" Grid.Row="0" />
+                <DatePicker Date="{Binding BirthDate}" IsEnabled="false" VerticalOptions="EndAndExpand" Grid.Column="1" Grid.Row="0" />
 
                 <Label Text="Phone:" Style="{StaticResource labelTitleStyle}" Grid.Column="0" Grid.Row="1" />
-                <Entry Placeholder="Phone Number" Style="{StaticResource entryGeneralStyle}" Text="{Binding PhoneNumber}" Grid.Column="1" Grid.Row="1" />
+                <Entry Placeholder="Mobile, Office, etc." Keyboard="Telephone" Style="{StaticResource entryGeneralStyle}" Text="{Binding PhoneNumber}" Grid.Column="1" Grid.Row="1" />
 
                 <Label Text="Address:" Style="{StaticResource labelTitleStyle}" Grid.Column="0" Grid.Row="2" />
-                <Entry Placeholder="Customer address" Style="{StaticResource entryGeneralStyle}" Text="{Binding Address}" Grid.Column="1" Grid.Row="2" />
+                <Entry Placeholder="Customer address" Keyboard="Default" Style="{StaticResource entryGeneralStyle}" Text="{Binding Address}" Grid.Column="1" Grid.Row="2" />
 
                 <Label Text="Email:" Style="{StaticResource labelTitleStyle}" Grid.Column="0" Grid.Row="3" />
-                <Entry Placeholder="Example: user@email.com" Style="{StaticResource entryGeneralStyle}" Text="{Binding Email}" Grid.Column="1" Grid.Row="3" />
+                <Entry Placeholder="Example: user@email.com" Keyboard="Email" Style="{StaticResource entryGeneralStyle}" Text="{Binding Email}" Grid.Column="1" Grid.Row="3" />
 
                 <Label Text="Credit:" Style="{StaticResource labelTitleStyle}" Grid.Column="0" Grid.Row="4" />
-                <Entry Placeholder="Credit Limit ($)" Style="{StaticResource entryGeneralStyle}" Text="{Binding CreditLimit}" Grid.Column="1" Grid.Row="4" />
+                <Entry Placeholder="Credit Limit ($)" Keyboard="Numeric" Style="{StaticResource entryGeneralStyle}" Text="{Binding CreditLimit}" Grid.Column="1" Grid.Row="4" />
                 
             </Grid>
         </Frame>
@@ -112,25 +113,11 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="3*" />
-                                        </Grid.ColumnDefinitions>
-
-                                        <Label Style="{StaticResource labelInvoiceStyle}" Grid.Column="0" Text="Description:" />
-                                        <Label Style="{StaticResource invoiceDataStyle}" Grid.Column="1" Text="{Binding Description}" />
-                                    </Grid>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="3*" />
-                                        </Grid.ColumnDefinitions>
-
-                                        <Label Style="{StaticResource labelInvoiceStyle}" Grid.Column="0" Text="Amount($): " />
-                                        <Label Style="{StaticResource invoiceDataStyle}" Grid.Column="1" Text="{Binding Amount}" />
-                                    </Grid>
+                                <StackLayout Padding="5" Orientation="Vertical">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Style="{StaticResource invoiceDataStyle}"   Text="{Binding Description}" />
+                                        <Label Style="{StaticResource invoiceDataStyle}" HorizontalOptions="EndAndExpand" Text="{Binding Amount, StringFormat='{0:C}'}" />
+                                    </StackLayout>
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>
