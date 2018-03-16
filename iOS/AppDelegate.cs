@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using ImageCircle.Forms.Plugin.iOS;
 using UIKit;
 
 namespace Cenfo_XamarinLab1_2018.iOS
@@ -13,6 +14,7 @@ namespace Cenfo_XamarinLab1_2018.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            ImageCircleRenderer.Init();
 
             LoadApplication(new App());
 
