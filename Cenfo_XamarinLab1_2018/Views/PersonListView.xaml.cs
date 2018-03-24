@@ -10,7 +10,7 @@ namespace Cenfo_XamarinLab1_2018.Views
             InitializeComponent();
 
             // Data context
-            BindingContext = new PersonViewModel();
+            BindingContext = PersonViewModel.GetInstance();
         }
     }
 }

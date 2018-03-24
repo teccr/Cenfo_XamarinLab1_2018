@@ -25,7 +25,7 @@
             </Style>
             <Style x:Key="invoiceDataStyle" TargetType="Entry">
                 <Setter Property="FontSize" Value="Small" />
-            </Style>
+            </Style> 
             <Style x:Key="frameStyle" TargetType="Frame">
                 <Setter Property="CornerRadius" Value="5" />
                 <Setter Property="Padding" Value="5" />
@@ -34,25 +34,32 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     
-    <Grid Padding="10,30,10,10">
+    <Grid HorizontalOptions="Fill" Padding="10,30,10,10">
         <Grid.RowDefinitions>
             <RowDefinition Height="2*" />
             <RowDefinition Height="2*" />
             <RowDefinition Height="2*" />
         </Grid.RowDefinitions>
-        
-        <Frame Grid.Row="0" Style="{StaticResource frameStyle}" >
+
+        <!-- Datos generales -->
+        <Frame HorizontalOptions="FillAndExpand" Grid.Row="0" Style="{StaticResource frameStyle}" >
             <StackLayout>
                <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
                     <Label Style="{StaticResource labelTitleStyle}" Text="ID: " />
-                    <Label Style="{StaticResource labelTitleStyle}" Text="{Binding Id}" />
+                    <Label Style="{StaticResource labelTitleStyle}" Text="{Binding CurrentPerson.Id}" />
                 </StackLayout> 
                 
-                <StackLayout Padding="5,0,5,0" Orientation="Horizontal">
+                <StackLayout Padding="5,0,5,0" VerticalOptions="Center" Orientation="Horizontal">
+                    <!-- Foto de la persona -->
                     <controls:CircleImage Source="https://figuya.com/uploads/product/profile_picture/10980/profile_dark-souls-pvc-sd-statue-artorias-der-abgrundschreiter-20-cm20180219-16806-1nwsgxh" 
-                                          Aspect="AspectFill" BorderColor="Black" BorderThickness="6">
+                                          Aspect="AspectFill" 
+                                          BorderColor="Black" 
+                                          BorderThickness="6"
+                                          HeightRequest="150"
+                                          WidthRequest="150">
                     </controls:CircleImage>
-                    
+
+                    <!-- Datos generales -->
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
@@ -62,17 +69,18 @@
                         </Grid.RowDefinitions>
 
                         <Label Text="Name" Style="{StaticResource labelInvoicesTitleStyle}" Grid.Column="0" Grid.Row="0" />
-                        <Entry Placeholder="Client Name" Keyboard="Default" Style="{StaticResource entryGeneralStyle}" Text="{Binding Name}" Grid.Row="1" />
-                        <Entry Placeholder="Last Name" Keyboard="Default" Style="{StaticResource entryGeneralStyle}" Text="{Binding LastName}" Grid.Row="2" />
-                        <Entry Placeholder="Mother's Last Name" Keyboard="Default" Style="{StaticResource entryGeneralStyle}" Text="{Binding MothersName}" Grid.Row="3" />
+                        <Entry Placeholder="Client Name" Keyboard="Default" Style="{StaticResource entryGeneralStyle}" Text="{Binding CurrentPerson.Name}" Grid.Row="1" />
+                        <Entry Placeholder="Last Name" Keyboard="Default" Style="{StaticResource entryGeneralStyle}" Text="{Binding CurrentPerson.LastName}" Grid.Row="2" />
+                        <Entry Placeholder="Mother's Last Name" Keyboard="Default" Style="{StaticResource entryGeneralStyle}" Text="{Binding CurrentPerson.MothersName}" Grid.Row="3" />
 
                     </Grid>
                 </StackLayout>    
             </StackLayout>
         </Frame>
 
-        <Frame Grid.Row="1" Style="{StaticResource frameStyle}" Padding="5,5,10,5">
-            <Grid VerticalOptions="Center">
+        <!-- Otras propiedades de la persona -->
+        <Frame HorizontalOptions="FillAndExpand"  Grid.Row="1" Style="{StaticResource frameStyle}" >
+            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Center">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="3*" />
@@ -86,30 +94,31 @@
                 </Grid.RowDefinitions>
 
                 <Label Text="Birth:" Style="{StaticResource labelTitleStyle}" Grid.Column="0" Grid.Row="0" />
-                <DatePicker Date="{Binding BirthDate}" IsEnabled="false" VerticalOptions="EndAndExpand" Grid.Column="1" Grid.Row="0" />
+                <DatePicker Date="{Binding CurrentPerson.BirthDate}" IsEnabled="false" VerticalOptions="EndAndExpand" Grid.Column="1" Grid.Row="0" />
 
                 <Label Text="Phone:" Style="{StaticResource labelTitleStyle}" Grid.Column="0" Grid.Row="1" />
-                <Entry Placeholder="Mobile, Office, etc." Keyboard="Telephone" Style="{StaticResource entryGeneralStyle}" Text="{Binding PhoneNumber}" Grid.Column="1" Grid.Row="1" />
+                <Entry Placeholder="Mobile, Office, etc." Keyboard="Telephone" Style="{StaticResource entryGeneralStyle}" Text="{Binding CurrentPerson.PhoneNumber}" Grid.Column="1" Grid.Row="1" />
 
                 <Label Text="Address:" Style="{StaticResource labelTitleStyle}" Grid.Column="0" Grid.Row="2" />
-                <Entry Placeholder="Customer address" Keyboard="Default" Style="{StaticResource entryGeneralStyle}" Text="{Binding Address}" Grid.Column="1" Grid.Row="2" />
+                <Entry Placeholder="Customer address" Keyboard="Default" Style="{StaticResource entryGeneralStyle}" Text="{Binding CurrentPerson.Address}" Grid.Column="1" Grid.Row="2" />
 
                 <Label Text="Email:" Style="{StaticResource labelTitleStyle}" Grid.Column="0" Grid.Row="3" />
-                <Entry Placeholder="Example: user@email.com" Keyboard="Email" Style="{StaticResource entryGeneralStyle}" Text="{Binding Email}" Grid.Column="1" Grid.Row="3" />
+                <Entry Placeholder="Example: user@email.com" Keyboard="Email" Style="{StaticResource entryGeneralStyle}" Text="{Binding CurrentPerson.Email}" Grid.Column="1" Grid.Row="3" />
 
                 <Label Text="Credit:" Style="{StaticResource labelTitleStyle}" Grid.Column="0" Grid.Row="4" />
-                <Entry Placeholder="Credit Limit ($)" Keyboard="Numeric" Style="{StaticResource entryGeneralStyle}" Text="{Binding CreditLimit}" Grid.Column="1" Grid.Row="4" />
+                <Entry Placeholder="Credit Limit ($)" Keyboard="Numeric" Style="{StaticResource entryGeneralStyle}" Text="{Binding CurrentPerson.CreditLimit}" Grid.Column="1" Grid.Row="4" />
                 
             </Grid>
         </Frame>
 
-        <Frame Grid.Row="2" Style="{StaticResource frameStyle}">
+        <!-- Compras del cliente -->
+        <Frame HorizontalOptions="FillAndExpand"  Grid.Row="2" Style="{StaticResource frameStyle}">
             <StackLayout>
                 <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
                     <Label Style="{StaticResource labelInvoicesTitleStyle}" Text="Purchases" />
                     <Button WidthRequest="25" HeightRequest="25" Image="newInvoice"></Button>
                 </StackLayout>
-                <ListView HasUnevenRows="true" ItemsSource="{Binding Invoices}">
+                <ListView HasUnevenRows="true" ItemsSource="{Binding CurrentPerson.Invoices}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>

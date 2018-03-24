@@ -10,7 +10,7 @@ namespace Cenfo_XamarinLab1_2018
             InitializeComponent();
 
 
-            MainPage = new PersonDetailView();
+            MainPage = new PersonListView();
         }
 
         protected override void OnStart()
