@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="Cenfo_XamarinLab1_2018.Views.InvoiceCreateView"
+    Title="New Invoice"
+    >
+    <StackLayout Margin="20" HorizontalOptions="CenterAndExpand" >
+        <StackLayout Orientation="Horizontal">
+            <Label Style="{StaticResource labelTitleStyle}" Text="Description" />
+            <Entry Style="{StaticResource entryEditableStyle}" WidthRequest="200" Text="{Binding CurrentInvoice.Description}" />
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Label Style="{StaticResource labelTitleStyle}" Text="Amount" />
+            <Entry Style="{StaticResource entryEditableStyle}" WidthRequest="200" Text="{Binding CurrentInvoice.Amount}" />
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Label Style="{StaticResource labelTitleStyle}" Text="Type"></Label>
+            <Picker SelectedItem="{Binding CurrentInvoice.InvoiceType}" WidthRequest="200" HorizontalOptions="EndAndExpand">
+                <Picker.Items>
+                    <x:String>Company</x:String> 
+                    <x:String>Person</x:String>
+                </Picker.Items>
+            </Picker>
+        </StackLayout>
+        <Button Command="{Binding SaveInvoiceToCurrentPersonCommand}" Style="{StaticResource submitButtonStyle}" Text="Add">
+            
+        </Button>
+    </StackLayout>
+</ContentPage>

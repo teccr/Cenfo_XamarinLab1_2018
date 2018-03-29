@@ -1,7 +1,8 @@
 ﻿<Properties StartupConfiguration="{1DF85027-2DF3-44E0-B4D0-1F3A779F840B}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Cenfo_XamarinLab1_2018/Models/Person.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Cenfo_XamarinLab1_2018/ViewModels/PersonViewModel.cs">
     <Files>
-      <File FileName="Cenfo_XamarinLab1_2018/Models/Person.cs" Line="74" Column="17" />
+      <File FileName="Cenfo_XamarinLab1_2018/Views/PersonDetailView.xaml" Line="135" Column="84" />
+      <File FileName="Cenfo_XamarinLab1_2018/ViewModels/PersonViewModel.cs" Line="166" Column="34" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" />

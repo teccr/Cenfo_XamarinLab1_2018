@@ -28,6 +28,12 @@ namespace Cenfo_XamarinLab1_2018.Models
             set;
         }
 
+        public string InvoiceType
+        {
+            get;
+            set;
+        }
+
         public Person Customer
         {
             get;

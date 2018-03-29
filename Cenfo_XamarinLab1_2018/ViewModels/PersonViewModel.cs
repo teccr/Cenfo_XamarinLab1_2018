@@ -69,6 +69,14 @@ namespace Cenfo_XamarinLab1_2018.ViewModels
             }
         }
 
+
+
+        public Invoice CurrentInvoice
+        {
+            get;
+            set;
+        }
+
         private async void InitClass()
         {
             PersonsList = await Person.CreatePersonsList();
@@ -79,6 +87,11 @@ namespace Cenfo_XamarinLab1_2018.ViewModels
         private void InitCommands()
         {
             ViewPersonDetailsCommand = new Command<int>(ViewPersonDetails);
+            AddInvoiceCommand = new Command(AddInvoiceToCurrentPerson);
+            SaveInvoiceToCurrentPersonCommand = new Command(SaveInvoiceToCurrentPerson);
+            StartEditInvoiceCommand = new Command<int>(StartEditInvoice);
+            SaveEditInvoiceCommand = new Command(SaveEditInvoice);
+            DeleteInvoiceCommand = new Command<int>(DeleteInvoice);
         }
 
         public ICommand ViewPersonDetailsCommand 
@@ -90,7 +103,76 @@ namespace Cenfo_XamarinLab1_2018.ViewModels
         private void ViewPersonDetails(int Id)
         {
             CurrentPerson = PersonsList.Where(person => person.Id == Id).FirstOrDefault();
-            App.Current.MainPage = new PersonDetailView();
+            ((MasterDetailPage)App.Current.MainPage).Detail.Navigation.PushAsync(new PersonDetailView());
+        }
+
+        public ICommand AddInvoiceCommand
+        {
+            get;
+            set;
+        }
+
+        private void AddInvoiceToCurrentPerson()
+        {
+            CurrentInvoice = new Invoice();
+            System.Random random = new System.Random();
+            CurrentInvoice.Id = random.Next(100001, 10000000);
+            ((MasterDetailPage)App.Current.MainPage).Detail.Navigation.PushAsync(new InvoiceCreateView());
+        }
+
+        public ICommand SaveInvoiceToCurrentPersonCommand
+        {
+            get;
+            set;
+        }
+
+        private void SaveInvoiceToCurrentPerson()
+        {
+            CurrentPerson.Invoices.Add(CurrentInvoice);
+            CurrentInvoice = null;
+            ((MasterDetailPage)App.Current.MainPage).Detail.Navigation.PopAsync();
+        }
+
+        public ICommand StartEditInvoiceCommand
+        {
+            get;
+            set;
+        }
+
+        private void StartEditInvoice(int Id)
+        {
+            CurrentInvoice = CurrentPerson.Invoices.Where(
+                invoice => invoice.Id == Id).FirstOrDefault();
+            ((MasterDetailPage)App.Current.MainPage).Detail.Navigation.PushAsync
+                                                    (new InvoiceEditView());
+        }
+
+        private void SaveEditInvoice()
+        {
+            CurrentInvoice = null;
+            ((MasterDetailPage)App.Current.MainPage).Detail.Navigation.PopAsync();
+        }
+
+        public ICommand SaveEditInvoiceCommand
+        {
+            get;
+            set;
+        }
+
+        private async void DeleteInvoice(int Id)
+        {
+            var continueDeletion = await ((MasterDetailPage)App.Current.MainPage).Detail.DisplayAlert(
+                "Delete invoice", "Do you want to delete the invoice?", "Yes","No");
+            if (!continueDeletion) return;
+            CurrentInvoice = CurrentPerson.Invoices.Where( invoice => invoice.Id == Id ).FirstOrDefault();
+            CurrentPerson.Invoices.Remove(CurrentInvoice);
+            CurrentInvoice = null;
+        }
+
+        public ICommand DeleteInvoiceCommand
+        {
+            get;
+            set;
         }
 
         #endregion

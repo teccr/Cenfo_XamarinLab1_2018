@@ -1,45 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Cenfo_XamarinLab1_2018.Views.PersonDetailView"
-             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions">
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+             x:Name="PersonDetailsView">
     <ContentPage.Resources>
-        <ResourceDictionary>
-            <Style x:Key="labelTitleStyle" TargetType="Label" >
-                <Setter Property="TextColor" Value = "#1B4965" />
-                <Setter Property="HorizontalTextAlignment" Value="End" />
-                <Setter Property="VerticalOptions" Value="Center" />
-            </Style>
-            <Style x:Key="labelInvoicesTitleStyle" TargetType="Label" >
-                <Setter Property="TextColor" Value = "#1B4965" />
-                <Setter Property="HorizontalTextAlignment" Value="Center" />
-            </Style>
-            <Style x:Key="entryGeneralStyle" TargetType="Entry">
-                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
-                <Setter Property="IsEnabled" Value="false" />
-            </Style>
-            <Style x:Key="labelInvoiceStyle" TargetType="Label" >
-                <Setter Property="TextColor" Value = "#5FA8D3" />
-                <Setter Property="HorizontalTextAlignment" Value="Start" />
-                <Setter Property="VerticalOptions" Value="Center" />
-                <Setter Property="FontSize" Value="Small" />
-            </Style>
-            <Style x:Key="invoiceDataStyle" TargetType="Entry">
-                <Setter Property="FontSize" Value="Small" />
-            </Style> 
-            <Style x:Key="frameStyle" TargetType="Frame">
-                <Setter Property="CornerRadius" Value="5" />
-                <Setter Property="Padding" Value="5" />
-                <Setter Property="HasShadow" Value="true" />
-            </Style >
-        </ResourceDictionary>
+        
     </ContentPage.Resources>
     
-    <Grid HorizontalOptions="Fill" Padding="10,30,10,10">
+    <Grid HorizontalOptions="Fill" Padding="10,5,10,10">
         <Grid.RowDefinitions>
             <RowDefinition Height="2*" />
             <RowDefinition Height="2*" />
             <RowDefinition Height="2*" />
         </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
         <!-- Datos generales -->
         <Frame HorizontalOptions="FillAndExpand" Grid.Row="0" Style="{StaticResource frameStyle}" >
@@ -116,18 +93,51 @@
             <StackLayout>
                 <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
                     <Label Style="{StaticResource labelInvoicesTitleStyle}" Text="Purchases" />
-                    <Button WidthRequest="25" HeightRequest="25" Image="newInvoice"></Button>
+                    <Button Command="{Binding AddInvoiceCommand}" WidthRequest="25" HeightRequest="25" Image="newInvoice">
+                        
+                    </Button>
                 </StackLayout>
                 <ListView HasUnevenRows="true" ItemsSource="{Binding CurrentPerson.Invoices}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout Padding="5" Orientation="Vertical">
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label Style="{StaticResource invoiceDataStyle}"   Text="{Binding Description}" />
-                                        <Label Style="{StaticResource invoiceDataStyle}" HorizontalOptions="EndAndExpand" Text="{Binding Amount, StringFormat='{0:C}'}" />
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Column="0" Style="{StaticResource invoiceDataStyle}" 
+                                           HorizontalOptions="Start"  Text="{Binding Description}" />
+                                    <Label Grid.Column="1" Style="{StaticResource invoiceDataStyle}" 
+                                           HorizontalOptions="End" Text="{Binding Amount, StringFormat='{0:C}'}" />
+
+                                    <StackLayout Grid.Column="2" HorizontalOptions="StartAndExpand" Orientation="Horizontal">
+                                        <Image HorizontalOptions="CenterAndExpand" HeightRequest="30" WidthRequest="30" Source="edit">
+                                            <!-- React to gesture events using commands -->
+                                            <Image.GestureRecognizers>
+                                                <!-- La especificacion del path es necesaria en listboxes, le pasamos el objeto con la informacion y le espeicificamos property donde estan los datos -->
+                                                <!-- Para el reference, el x:name fue definido. -->
+                                                <TapGestureRecognizer 
+                                                    Command="{Binding Path=BindingContext.StartEditInvoiceCommand, Source={x:Reference PersonDetailsView}}"
+                                                    CommandParameter="{Binding Id}"
+                                                />
+                                            </Image.GestureRecognizers>
+                                        </Image>
+                                        <Image HorizontalOptions="CenterAndExpand" HeightRequest="30" WidthRequest="30" Source="delete">
+                                            <!-- React to gesture events using commands -->
+                                            <Image.GestureRecognizers>
+                                                <!-- La especificacion del path es necesaria en listboxes, le pasamos el objeto con la informacion y le espeicificamos property donde estan los datos -->
+                                                <!-- Para el reference, el x:name fue definido. -->
+                                                <TapGestureRecognizer 
+                                                    Command="{Binding Path=BindingContext.DeleteInvoiceCommand, Source={x:Reference PersonDetailsView}}"
+                                                    CommandParameter="{Binding Id}"
+                                                />
+                                            </Image.GestureRecognizers>
+                                        </Image>
                                     </StackLayout>
-                                </StackLayout>
+                                </Grid>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>

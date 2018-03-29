@@ -1,6 +1,43 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Cenfo_XamarinLab1_2018.App">
     <Application.Resources>
-        <!-- Application resource dictionary -->
+        <ResourceDictionary>
+            <Style x:Key="labelTitleStyle" TargetType="Label" >
+                <Setter Property="TextColor" Value = "#1B4965" />
+                <Setter Property="HorizontalTextAlignment" Value="End" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style x:Key="labelInvoicesTitleStyle" TargetType="Label" >
+                <Setter Property="TextColor" Value = "#1B4965" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+            <Style x:Key="entryGeneralStyle" TargetType="Entry">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="IsEnabled" Value="false" />
+            </Style>
+            <Style x:Key="entryEditableStyle" TargetType="Entry">
+                <Setter Property="HorizontalOptions" Value="EndAndExpand" />
+            </Style>
+            <Style x:Key="labelInvoiceStyle" TargetType="Label" >
+                <Setter Property="TextColor" Value = "#5FA8D3" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="Small" />
+            </Style>
+            <Style x:Key="invoiceDataStyle" TargetType="Entry">
+                <Setter Property="FontSize" Value="Small" />
+            </Style> 
+            <Style x:Key="frameStyle" TargetType="Frame">
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="Padding" Value="5" />
+                <Setter Property="HasShadow" Value="true" />
+            </Style >
+            <Style x:Key="submitButtonStyle" TargetType="Button">
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="BorderWidth" Value="1" />
+                <Setter Property="BorderRadius" Value="4" />
+                <Setter Property="BorderColor" Value="Blue" />
+            </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

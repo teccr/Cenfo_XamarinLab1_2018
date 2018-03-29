@@ -122,6 +122,9 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\newInvoice.png" />
+    <BundleResource Include="Resources\Placeholder.png" />
+    <BundleResource Include="Resources\delete.png" />
+    <BundleResource Include="Resources\edit.png" />
   </ItemGroup>
   <Import Project="..\Cenfo_XamarinLab1_2018\Cenfo_XamarinLab1_2018.projitems" Label="Shared" Condition="Exists('..\Cenfo_XamarinLab1_2018\Cenfo_XamarinLab1_2018.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

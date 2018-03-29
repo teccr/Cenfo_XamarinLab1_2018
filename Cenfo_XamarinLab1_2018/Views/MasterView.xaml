@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="Cenfo_XamarinLab1_2018.Views.MasterView"
+             xmlns:pages="clr-namespace:Cenfo_XamarinLab1_2018.Views">
+    <MasterDetailPage.Master>
+        <!-- x:Name es requerido en el master del master detail page, error no es descriptivo -->
+        <!-- Title es requerido tambien, sino hay un error en runtime. -->
+        <pages:MenuView Padding="0,15,0,0" x:Name="MenuPage"></pages:MenuView>
+    </MasterDetailPage.Master>
+
+    <MasterDetailPage.Detail>
+        <NavigationPage>
+            <x:Arguments>
+                <pages:PersonListView></pages:PersonListView>
+            </x:Arguments>
+        </NavigationPage>
+    </MasterDetailPage.Detail>
+</MasterDetailPage>

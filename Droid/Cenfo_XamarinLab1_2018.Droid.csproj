@@ -133,6 +133,8 @@
     <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable\newInvoice.png" />
+    <AndroidResource Include="Resources\drawable\delete.png" />
+    <AndroidResource Include="Resources\drawable\edit.png" />
   </ItemGroup>
   <Import Project="..\Cenfo_XamarinLab1_2018\Cenfo_XamarinLab1_2018.projitems" Label="Shared" Condition="Exists('..\Cenfo_XamarinLab1_2018\Cenfo_XamarinLab1_2018.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
