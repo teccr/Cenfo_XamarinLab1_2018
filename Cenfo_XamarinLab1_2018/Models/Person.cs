@@ -80,11 +80,11 @@ namespace Cenfo_XamarinLab1_2018.Models
             Task<ObservableCollection<Person>> peopleTask = new Task<ObservableCollection<Person>>(() =>
             {
                 ObservableCollection<Invoice> invoices = new ObservableCollection<Invoice>();
-                invoices.Add( new Invoice() {  Amount=1000, Description="Cellphone cases" } );
-                invoices.Add(new Invoice() { Amount = 4000, Description = "Pillows" });
-                invoices.Add(new Invoice() { Amount = 2500, Description = "Screen shields" });
-                invoices.Add(new Invoice() { Amount = 3800, Description = "Batteries" });
-                invoices.Add(new Invoice() { Amount = 2000, Description = "Snacks" });
+                invoices.Add( new Invoice() { Id = 1001,  Amount=1000, Description="Cellphone cases" } );
+                invoices.Add(new Invoice() { Id = 1002, Amount = 4000, Description = "Pillows" });
+                invoices.Add(new Invoice() { Id = 1003, Amount = 2500, Description = "Screen shields" });
+                invoices.Add(new Invoice() { Id = 1004, Amount = 3800, Description = "Batteries" });
+                invoices.Add(new Invoice() { Id = 1005, Amount = 2000, Description = "Snacks" });
 
                 ObservableCollection<Person> result = new ObservableCollection<Person>();
 

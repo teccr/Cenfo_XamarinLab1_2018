@@ -39,5 +39,18 @@ namespace Cenfo_XamarinLab1_2018.Models
             get;
             set;
         }
+
+        public Invoice Duplicate()
+        {
+            return new Invoice()
+            {
+                Amount = this.Amount,
+                Customer = this.Customer,
+                Description = this.Description,
+                Id = this.Id,
+                InvoceDate = this.InvoceDate,
+                InvoiceType = this.InvoiceType
+            };
+        }
     }
 }

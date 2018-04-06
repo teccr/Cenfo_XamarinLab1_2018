@@ -18,7 +18,7 @@ namespace Cenfo_XamarinLab1_2018.ViewModels
         {
             if (instance == null)
             {
-                
+
                 instance = new PersonViewModel();
             }
 
@@ -27,7 +27,7 @@ namespace Cenfo_XamarinLab1_2018.ViewModels
 
         public static void DeleteInstance()
         {
-            if(instance != null)
+            if (instance != null)
             {
                 instance = null;
             }
@@ -44,7 +44,7 @@ namespace Cenfo_XamarinLab1_2018.ViewModels
         private ObservableCollection<Person> _personsList;
         public ObservableCollection<Person> PersonsList
         {
-            get 
+            get
             {
                 return _personsList;
             }
@@ -58,9 +58,9 @@ namespace Cenfo_XamarinLab1_2018.ViewModels
         private Person _currentPerson;
         public Person CurrentPerson
         {
-            get 
+            get
             {
-                return _currentPerson; 
+                return _currentPerson;
             }
             set
             {
@@ -68,8 +68,6 @@ namespace Cenfo_XamarinLab1_2018.ViewModels
                 OnPropertyChanged("CurrentPerson");
             }
         }
-
-
 
         public Invoice CurrentInvoice
         {
@@ -94,7 +92,7 @@ namespace Cenfo_XamarinLab1_2018.ViewModels
             DeleteInvoiceCommand = new Command<int>(DeleteInvoice);
         }
 
-        public ICommand ViewPersonDetailsCommand 
+        public ICommand ViewPersonDetailsCommand
         {
             get;
             set;
@@ -142,13 +140,16 @@ namespace Cenfo_XamarinLab1_2018.ViewModels
         private void StartEditInvoice(int Id)
         {
             CurrentInvoice = CurrentPerson.Invoices.Where(
-                invoice => invoice.Id == Id).FirstOrDefault();
+                invoice => invoice.Id == Id).FirstOrDefault().Duplicate();
             ((MasterDetailPage)App.Current.MainPage).Detail.Navigation.PushAsync
                                                     (new InvoiceEditView());
         }
 
         private void SaveEditInvoice()
         {
+            int invoicePosition = CurrentPerson.Invoices.IndexOf(CurrentPerson.Invoices.Where(
+                invoice => invoice.Id == CurrentInvoice.Id).FirstOrDefault());
+            CurrentPerson.Invoices[invoicePosition] = CurrentInvoice;
             CurrentInvoice = null;
             ((MasterDetailPage)App.Current.MainPage).Detail.Navigation.PopAsync();
         }
@@ -162,9 +163,9 @@ namespace Cenfo_XamarinLab1_2018.ViewModels
         private async void DeleteInvoice(int Id)
         {
             var continueDeletion = await ((MasterDetailPage)App.Current.MainPage).Detail.DisplayAlert(
-                "Delete invoice", "Do you want to delete the invoice?", "Yes","No");
+                "Delete invoice", "Do you want to delete the invoice?", "Yes", "No");
             if (!continueDeletion) return;
-            CurrentInvoice = CurrentPerson.Invoices.Where( invoice => invoice.Id == Id ).FirstOrDefault();
+            CurrentInvoice = CurrentPerson.Invoices.Where(invoice => invoice.Id == Id).FirstOrDefault();
             CurrentPerson.Invoices.Remove(CurrentInvoice);
             CurrentInvoice = null;
         }
@@ -183,7 +184,7 @@ namespace Cenfo_XamarinLab1_2018.ViewModels
 
         protected void OnPropertyChanged(string propertyName)
         {
-            if(!string.IsNullOrEmpty(propertyName) && PropertyChanged != null)
+            if (!string.IsNullOrEmpty(propertyName) && PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
