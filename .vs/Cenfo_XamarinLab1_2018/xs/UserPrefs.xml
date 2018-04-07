@@ -1,10 +1,8 @@
 ﻿<Properties StartupConfiguration="{1DF85027-2DF3-44E0-B4D0-1F3A779F840B}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="Cenfo_XamarinLab1_2018/ViewModels/PersonViewModel.cs">
     <Files>
-      <File FileName="Cenfo_XamarinLab1_2018/Views/PersonDetailView.xaml" Line="149" Column="1" />
-      <File FileName="Cenfo_XamarinLab1_2018/ViewModels/PersonViewModel.cs" Line="185" Column="62" />
-      <File FileName="Cenfo_XamarinLab1_2018/Models/Invoice.cs" Line="52" Column="47" />
-      <File FileName="Cenfo_XamarinLab1_2018/Models/Person.cs" Line="97" Column="72" />
+      <File FileName="Cenfo_XamarinLab1_2018/Models/Invoice.cs" Line="96" Column="52" />
+      <File FileName="Cenfo_XamarinLab1_2018/ViewModels/PersonViewModel.cs" Line="145" Column="32" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" />
@@ -12,10 +10,6 @@
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.Cenfo__XamarinLab1__2018.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.56A8923D-0AC1-4556-A4A8-8CE7785004F6">
-    <MonoDevelop.MacDev.AppleDevelopmentTeam />
-  </MonoDevelop.Ide.ItemProperties.Cenfo__XamarinLab1__2018.iOS>
-  <MonoDevelop.Ide.ItemProperties.Cenfo__XamarinLab1__2018.Droid PreferredExecutionTarget="Android.Android_Accelerated_Nougat" />
+  <MonoDevelop.Ide.ItemProperties.Cenfo__XamarinLab1__2018.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.A45BD78C-3ACE-42B7-838F-B0E10711DC54" />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.Cenfo__XamarinLab1__2018 FirstBuild="True" />
 </Properties>

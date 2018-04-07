@@ -149,7 +149,7 @@ namespace Cenfo_XamarinLab1_2018.ViewModels
         {
             int invoicePosition = CurrentPerson.Invoices.IndexOf(CurrentPerson.Invoices.Where(
                 invoice => invoice.Id == CurrentInvoice.Id).FirstOrDefault());
-            CurrentPerson.Invoices[invoicePosition] = CurrentInvoice;
+            CurrentPerson.Invoices[invoicePosition].CopyFromInvoice(CurrentInvoice);
             CurrentInvoice = null;
             ((MasterDetailPage)App.Current.MainPage).Detail.Navigation.PopAsync();
         }
