@@ -1,4 +1,4 @@
-﻿using Cenfo_XamarinLab1_2018.Models;
+using Cenfo_XamarinLab1_2018.Models;
 using System.ComponentModel;
 using System.Linq;
 using System.Collections.ObjectModel;
@@ -90,7 +90,7 @@ namespace Cenfo_XamarinLab1_2018.ViewModels
             StartEditInvoiceCommand = new Command<int>(StartEditInvoice);
             SaveEditInvoiceCommand = new Command(SaveEditInvoice);
             DeleteInvoiceCommand = new Command<int>(DeleteInvoice);
-        }
+        }		
 
         public ICommand ViewPersonDetailsCommand
         {
